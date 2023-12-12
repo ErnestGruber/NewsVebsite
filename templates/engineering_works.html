@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Detail</title>
+    {% load static %}
+    <link  rel="stylesheet" href="{% static 'css/bootstrap.css' %}" >
+    <link  rel="stylesheet" href="{% static 'css/index.css' %}" >
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+<style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .maintenance-card {
+            text-align: center;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .maintenance-title {
+            font-size: 2rem;
+            color: #dc3545;
+        }
+        .maintenance-message {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="maintenance-card">
+            <h1 class="maintenance-title">Engineering works</h1>
+            <p class="maintenance-message">Sorry, our site is temporarily unavailable due to maintenance. Please come back later.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CNN - Breaking News, Latest News and Videos</title>
+    {% load static %}
+    <link  rel="stylesheet" href="{% static 'css/bootstrap.css' %}" >
+    <link  rel="stylesheet" href="{% static 'css/index.css' %}" >
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+
+
+<body>
+
+    <!-- Header -->
+    <header class="bg-primary text-white">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#"><img src="cnn_logo.png" alt="CNN Logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">World</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Politics</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Business</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Technology</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Health</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+
+{% block FirstContent %}
+<!-- First Content -->
+<div class="container my-sm-5">
+  <div class="row ">
+    <!-- Первый столбец -->
+    <div class="col-lg-6">
+                {% for items in news.column1_news %}
+                    {% if forloop.counter == 1 %}
+                        {% include "samples/NewsItemBigSample.html" %}
+                    {% else %}
+                        {% include "samples/NewsItemStrokeSample.html" %}
+                    {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Второй столбец -->
+    <div class="col-lg-3 col-sm-6">
+        {% for items in news.column2_news %}
+            {% if forloop.counter != 1 and forloop.counter != 4 %}
+                {% include "samples/NewsItemBaseSample.html" %}
+            {% endif %}
+            {% if forloop.counter == 2 or forloop.counter == 4 %}
+                {% include "samples/NewsItemStrokeSample.html" %}
+            {% endif %}
+        {% endfor %}
+
+    </div>
+
+    <!-- Третий столбец -->
+    <div class="col-lg-3 ">
+        {% for items in news.column3_news %}
+            {% include "samples/NewsItemStrokeSample.html" %}
+        {% endfor %}
+            <!-- Добавьте остальные заголовки новостей по вашему усмотрению -->
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% if newsSections.news %}
+
+   <!-- Second Content -->
+<div class="container">
+  <div class="row">
+    <!-- Первый столбец -->
+    <div class="col-lg-4">
+        {% if newsSections.news|length >= 2 %}
+            {% for items in newsSections.news|slice:"0:2" %}
+                {% if forloop.counter != 2 and forloop.counter != 4 %}
+                    {% include "samples/NewsItemBaseSample.html" %}
+                {% endif %}
+                {% if forloop.counter == 2 or forloop.counter == 4 %}
+                    {% include "samples/NewsItemStrokeSample.html" %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Второй столбец -->
+    <div class="col-lg-4">
+        {% if newsSections.news|length >= 5 %}
+            {% for items in newsSections.news|slice:"2:5" %}
+                {% if forloop.counter != 2 and forloop.counter != 4 %}
+                    {% include "samples/NewsItemBaseSample.html" %}
+                {% endif %}
+                {% if forloop.counter == 2 or forloop.counter == 4 %}
+                    {% include "samples/NewsItemStrokeSample.html" %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Третий столбец -->
+    <div class="col-lg-4">
+        {% if newsSections.news|length >= 9 %}
+            {% for items in newsSections.news|slice:"5:9" %}
+                {% include "samples/NewsItemStrokeSample.html" %}
+            {% endfor %}
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+{% else %}
+    <p>No news available.</p>
+{% endif %}
+</body>
+</html>

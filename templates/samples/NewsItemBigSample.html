@@ -1,0 +1,8 @@
+<div class="news-item-big">
+
+    <a href="{% url 'newspage' url=items.urlEndpoint %}">
+        <img src="{{ news.column1_news.0.titleImg.url}}"  class="img-fluid">
+    </a>
+           <h3 class="card-title" > <a href="{% url 'newspage' url=news.column1_news.0.urlEndpoint %}">{{ news.column1_news.0.title}}</a></h3>
+    <p>{{news.column1_news.0.tittleText}}</p>
+</div>

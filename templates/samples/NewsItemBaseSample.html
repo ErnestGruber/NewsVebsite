@@ -1,0 +1,11 @@
+<div class="news-item-base shadow b-5 bg-white rounded bg-light">
+    <a href="{% url 'newspage' url=items.urlEndpoint %}">
+        {% if items.titleImg %}
+            <img src="{{ items.titleImg.url }}" alt="Изображение новости" class="img-fluid img-fluid">
+        {% else %}
+            <p>No image available.</p>
+        {% endif %}
+    </a>
+    <h3 class="standart-font-Title"> <a href="{% url 'newspage' url=items.urlEndpoint %}"> {{ items.title }} </a></h3>
+        <p> {{ items.titleText }} </p>
+</div>
