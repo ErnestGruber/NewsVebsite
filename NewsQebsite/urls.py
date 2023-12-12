@@ -34,7 +34,8 @@ urls = []
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index),
-    path('news/<slug:url>/', views.page_view, name='newspage')
+    path('news/<slug:url>/', views.page_view, name='newspage'),
+    path('news_category/<str:category>/', views.get, name='news-list'),
 ]
 """
 

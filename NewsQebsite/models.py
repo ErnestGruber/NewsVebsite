@@ -35,7 +35,7 @@ class News(models.Model):
     secondImg = models.ImageField(blank=True, upload_to=upload_to, help_text="Second image our news")
     dataNews = models.DateTimeField(help_text="Text second our news")
     rate = models.IntegerField(serialize=True,max_length=10)
-    categoryNews = models.ForeignKey(Category, on_delete=models.CASCADE, max_length=5000, serialize=True, help_text="Category second our news ")
+    categoryNews = models.CharField(max_length=50)
     auto_increment_id = models.AutoField(primary_key=True)
     # Metadata
     class Meta:

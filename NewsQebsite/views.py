@@ -4,7 +4,8 @@ from django.urls import reverse
 from datetime import datetime, timedelta
 from NewsQebsite.models import News
 from NewsQebsite.settings import MEDIA_ROOT
-
+from django.views import View
+from django.http import JsonResponse
 
 def index(request):
     print("base dir path", MEDIA_ROOT)
@@ -34,6 +35,19 @@ newsSections = {
 }
 
 
+
+def get(request, category):
+    news_list = News.objects.filter(categoryNews=category)
+    news_list_get = news_list.get
+    #data = [{'Url': news.urlEndpoint, 'title': news.title, 'category': news.categoryNews} for news in news_list]
+    context = {'news': News.objects.order_by(news_list)[2:5],
+               'newsSections': newsSections}
+
+
+    #return JsonResponse(data, safe=False)
+    return render(request, 'index.html', context)
+
+
 def index(request):
     # try:
 
@@ -56,3 +70,4 @@ def page_view(request, url):
         return render(request, 'page_not_found.html')
     except Exception as e:
         return render(request, 'engineering_works.html')
+
